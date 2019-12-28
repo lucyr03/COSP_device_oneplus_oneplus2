@@ -223,6 +223,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.power@1.2-service-qti
 
+# OnePlus Settings
+PRODUCT_PACKAGES += \
+    DeviceParts \
+    com.oneplus.keyhandler
+
+PRODUCT_SYSTEM_SERVER_JARS += com.oneplus.keyhandler
+
 # Privapp Whitelist
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-qti.xml
@@ -308,3 +315,6 @@ PRODUCT_COPY_FILES += \
 # MIUI Charger
 PRODUCT_PACKAGES += \
     chargeonlymode
+
+# Never dexopt the KeyHandler
+$(call add-product-dex-preopt-module-config, com.oneplus.keyhandler, disable)
